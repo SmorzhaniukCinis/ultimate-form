@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import {Header} from "./Componnents/Header";
 import {Step1} from "./Componnents/Step1";
+import {Step2} from "./Componnents/Step2";
 
 
 
@@ -27,13 +28,7 @@ function App() {
 }
 
 
-const Step2 = () => {
-    return (
-        <div>
-            step 2
-        </div>
-    )
-}
+
 
 const Step3 = () => {
     return (

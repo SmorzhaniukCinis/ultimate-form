@@ -8,8 +8,12 @@ import {useForm} from "react-hook-form";
 import {PrimaryButton} from "./PrimaryButton";
 import {yupResolver} from "@hookform/resolvers/yup";
 import * as yup from 'yup';
+import { useNavigate } from "react-router-dom";
+
 
 export const Step1 = () => {
+
+    const navigate = useNavigate();
 
     const schema = yup.object().shape({
         firstName: yup
@@ -29,7 +33,7 @@ export const Step1 = () => {
     const { errors } = formState;
 
     const onSubmit = (data) => {
-        console.log(data)
+        navigate('/step2')
     }
     return (
         <MainContainer>
