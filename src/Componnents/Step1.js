@@ -11,7 +11,7 @@ import * as yup from 'yup';
 import { useNavigate } from "react-router-dom";
 
 
-export const Step1 = () => {
+export const Step1 = ({getFormData, formData}) => {
 
     const navigate = useNavigate();
 
@@ -28,12 +28,14 @@ export const Step1 = () => {
 
     const {register, handleSubmit, formState} = useForm({
         mode: "onBlur",
-        resolver: yupResolver(schema)
+        resolver: yupResolver(schema),
+        defaultValues: {firstName: formData?.firstName, lastName: formData?.lastName}
     })
     const { errors } = formState;
 
     const onSubmit = (data) => {
         navigate('/step2')
+        getFormData(data)
     }
     return (
         <MainContainer>

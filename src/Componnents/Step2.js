@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import {parsePhoneNumberFromString} from "libphonenumber-js";
 
 
-export const Step2 = () => {
+export const Step2 = ({getFormData, formData}) => {
 
     const navigate = useNavigate();
 
@@ -22,12 +22,14 @@ export const Step2 = () => {
 
     const {register, handleSubmit, formState, watch} = useForm({
         mode: "onBlur",
-        resolver: yupResolver(schema)
+        resolver: yupResolver(schema),
+        defaultValues: {email:formData.email, hasPhone: formData.hasPhone ,phoneNumber: formData.phoneNumber}
     })
     const { errors } = formState;
 
     const onSubmit = (data) => {
         navigate('/step3')
+        getFormData(data)
     }
     const normalizePhoneNumber = (value) => {
         const phoneNumber = parsePhoneNumberFromString(value)
@@ -54,7 +56,7 @@ export const Step2 = () => {
                     label='Email' />
 
                 <FormControlLabel control={
-                    <Checkbox  color={'primary'} {...register("hasPhone")} />
+                    <Checkbox defaultValue={formData.hasPhone} defaultChecked={formData.hasPhone}  color={'primary'} {...register("hasPhone")} />
                 } label={'Do you have a phone'}/>
                 {
                     hasPhone && (

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
     BrowserRouter as Router,
     Routes,
@@ -12,16 +12,24 @@ import {Step3} from "./Componnents/Step3";
 
 
 function App() {
+
+    const [formData, setFormData] = useState()
+
+    const getFormData = (data) => {
+        setFormData(prevState => {
+            return {...prevState, ...data }
+        })
+    }
+    console.log(formData)
     return (
         <>
             <Header/>
             <Router>
                 <Routes>
-                    <Route path='/' element={<Step1/>} />
-                    <Route path='/step2' element={<Step2/>} />
-                    <Route path='/step3' element={<Step3/>} />
-                    <Route path='/result' element={<Result/>} />
-
+                    <Route path='/' element={<Step1 formData={formData} getFormData={getFormData}/>} />
+                    <Route path='/step2' element={<Step2 formData={formData} getFormData={getFormData}/>} />
+                    <Route path='/step3' element={<Step3 formData={formData} getFormData={getFormData}/>} />
+                    <Route formData={formData} path='/result' formData={formData} element={<Result/>} />
                 </Routes>
             </Router>
         </>
@@ -34,7 +42,7 @@ function App() {
 const Result = () => {
     return (
         <div>
-
+as
         </div>
     )
 }

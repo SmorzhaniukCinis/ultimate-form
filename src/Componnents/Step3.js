@@ -13,12 +13,16 @@ import {parsePhoneNumberFromString} from "libphonenumber-js";
 import {FileInput} from "./FileInput";
 
 
-export const Step3 = () => {
+export const Step3 = ({getFormData, formData}) => {
 
-    const {control, handleSubmit} = useForm()
+    const {control, handleSubmit} = useForm({
+        defaultValues: {files: formData.files}
+    })
+    const navigate = useNavigate()
 
-    const onSubmit = () => {
-
+    const onSubmit = (data) => {
+        navigate('/result')
+        getFormData(data)
     }
 
     return (
@@ -28,7 +32,7 @@ export const Step3 = () => {
             </Typography>
             <Form onSubmit={handleSubmit(onSubmit)}>
                 <FileInput name="files" control={control}/>
-                <PrimaryButton type={'submit'}>Next</PrimaryButton>
+                <PrimaryButton type={'submit'}>Result</PrimaryButton>
             </Form>
         </MainContainer>
     )
