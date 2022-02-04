@@ -5,13 +5,16 @@ import {List, ListItem, ListItemIcon, ListItemText, Paper} from "@material-ui/co
 import {CloudUpload, InsertDriveFile} from "@material-ui/icons";
 
 export const FileInput = ({control, name}) => {
+
+
+    let arr = [{path: 'art.jpg', name: 'art.jpg'}]
     return (
 
         <Controller
             control={control}
             name={name}
-            render={({field: { onChange, onBlur, value, name}}) => <>
-                <Dropzone  onDrop={onChange}>
+            render={({field: { onChange, onBlur, value, name, ref }}) => <>
+                <Dropzone inputRef={ref}  onDrop={onChange}>
                     {
                         ({getRootProps, getInputProps}) => (
                             <>
@@ -25,7 +28,8 @@ export const FileInput = ({control, name}) => {
                     }
                 </Dropzone>
                 <List>
-                    {value.map((f, index) => (
+
+                    {value?.map((f, index) => (
                         <ListItem key={index}>
                             <ListItemIcon>
                                 <InsertDriveFile />
