@@ -1,6 +1,5 @@
 import React from "react";
-import {Checkbox, FormControlLabel, TextField, Typography} from "@material-ui/core";
-import {makeStyles} from '@material-ui/core/styles';
+import {Checkbox, FormControlLabel, Typography} from "@material-ui/core";
 import {MainContainer} from "./MainContainer";
 import {Form} from "./Form";
 import {Input} from "./Input";
@@ -8,8 +7,8 @@ import {useForm} from "react-hook-form";
 import {PrimaryButton} from "./PrimaryButton";
 import {yupResolver} from "@hookform/resolvers/yup";
 import * as yup from 'yup';
-import { useNavigate } from "react-router-dom";
 import {parsePhoneNumberFromString} from "libphonenumber-js";
+import {useNavigate} from "react-router-dom";
 
 
 export const Step2 = ({getFormData, formData}) => {
@@ -23,9 +22,9 @@ export const Step2 = ({getFormData, formData}) => {
     const {register, handleSubmit, formState, watch} = useForm({
         mode: "onBlur",
         resolver: yupResolver(schema),
-        defaultValues: {email:formData.email, hasPhone: formData.hasPhone ,phoneNumber: formData.phoneNumber}
+        defaultValues: {email: formData?.email, hasPhone: formData?.hasPhone, phoneNumber: formData?.phoneNumber}
     })
-    const { errors } = formState;
+    const {errors} = formState;
 
     const onSubmit = (data) => {
         navigate('/step3')
@@ -42,6 +41,7 @@ export const Step2 = ({getFormData, formData}) => {
     const hasPhone = watch('hasPhone')
     return (
         <MainContainer>
+            <div>wq</div>
             <Typography component={'h2'} variant={'h5'}>
                 Step 2
             </Typography>
@@ -53,21 +53,22 @@ export const Step2 = ({getFormData, formData}) => {
                     id='email'
                     required
                     type='email'
-                    label='Email' />
+                    label='Email'/>
 
                 <FormControlLabel control={
-                    <Checkbox defaultValue={formData.hasPhone} defaultChecked={formData.hasPhone}  color={'primary'} {...register("hasPhone")} />
+                    <Checkbox defaultValue={formData?.hasPhone} defaultChecked={formData?.hasPhone}
+                              color={'primary'} {...register("hasPhone")} />
                 } label={'Do you have a phone'}/>
                 {
                     hasPhone && (
                         <Input
                             {...register("phoneNumber")}
                             id='phoneNumber'
-                            onChange={(event)=> {
+                            onChange={(event) => {
                                 event.target.value = normalizePhoneNumber(event.target.value)
                             }}
                             type='tel'
-                            label='Phone number' />
+                            label='Phone number'/>
                     )
                 }
                 <PrimaryButton type={'submit'}>Next</PrimaryButton>

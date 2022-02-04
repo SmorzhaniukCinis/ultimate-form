@@ -16,7 +16,7 @@ import {FileInput} from "./FileInput";
 export const Step3 = ({getFormData, formData}) => {
 
     const {control, handleSubmit} = useForm({
-        defaultValues: {files: formData.files}
+        defaultValues: {files: formData?.files}
     })
     const navigate = useNavigate()
 

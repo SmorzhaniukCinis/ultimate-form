@@ -8,6 +8,7 @@ import {Header} from "./Componnents/Header";
 import {Step1} from "./Componnents/Step1";
 import {Step2} from "./Componnents/Step2";
 import {Step3} from "./Componnents/Step3";
+import {Result} from "./Componnents/Result";
 
 
 
@@ -20,7 +21,6 @@ function App() {
             return {...prevState, ...data }
         })
     }
-    console.log(formData)
     return (
         <>
             <Header/>
@@ -29,22 +29,12 @@ function App() {
                     <Route path='/' element={<Step1 formData={formData} getFormData={getFormData}/>} />
                     <Route path='/step2' element={<Step2 formData={formData} getFormData={getFormData}/>} />
                     <Route path='/step3' element={<Step3 formData={formData} getFormData={getFormData}/>} />
-                    <Route formData={formData} path='/result' formData={formData} element={<Result/>} />
+                    <Route path='/result' element={<Result formData={formData}/>} />
                 </Routes>
             </Router>
         </>
     );
 }
 
-
-
-
-const Result = () => {
-    return (
-        <div>
-as
-        </div>
-    )
-}
 
 export default App;
