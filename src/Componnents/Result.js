@@ -59,8 +59,8 @@ export const Result = ({formData}) => {
         entries.forEach(entries => {
             finalFormData.append(entries[0], entries[1])
         })
-        
-        //finalFormData need to push on server
+
+        // here finalFormData need to push on server
 
 
         Swal.fire('Great job!', "You've passed the challenge", 'success')
